@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import responseJson from "../../utils/responseJson";
 
 const prisma = new PrismaClient();
 
@@ -11,27 +12,14 @@ export async function postById(req: Request, res: Response) {
       },
     });
     if (!user) {
-      return res
-        .json({
-          status: 404,
-          message: "User not found!",
-        })
-        .status(404);
+      await prisma.$disconnect;
+      return responseJson(res, 404, "User not found");
     }
-    res
-      .json({
-        status: 200,
-        message: "Success",
-        data: user,
-      })
-      .status(200);
     await prisma.$disconnect;
+    return responseJson(res, 200, "success", user)
   } catch (error) {
     console.log(error);
-    res.json({
-      status: 400,
-      message: "bad Request",
-    });
     await prisma.$disconnect;
+    return responseJson(res, 400, "bad request")
   }
 }
