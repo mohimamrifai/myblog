@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { createSlug } from "../../utils/createSlug";
 import { calculateReadTime } from "../../utils/calculateReadTime";
 import validateThumbnail from "../../utils/validateThumbnail";
+import responseJson from "../../utils/responseJson";
 
 const prisma = new PrismaClient();
 
@@ -38,13 +39,8 @@ export async function createPost(req: Request, res: Response) {
         author_id: author_id
       },
     });
-    res
-      .json({
-        status: 201,
-        message: "Successfully created a post",
-      })
-      .status(201);
     await prisma.$disconnect;
+    return responseJson(res, 201, "Successfully created a post")
   } catch (error) {
     console.log(error);
     res.json({
