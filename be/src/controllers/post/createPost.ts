@@ -17,14 +17,8 @@ export async function createPost(req: Request, res: Response) {
     const read_time = calculateReadTime(body)
     const isValidThumbnail = await validateThumbnail(file)
     if (!isValidThumbnail) {
-      // Tipe mime tidak valid, tanggapi dengan pesan kesalahan
-      return res
-        .status(400)
-        .json({
-          status: "Failed",
-          message:
-            "Invalid file type. Only PNG, WebP, and JPEG images are allowed.",
-        });
+      await prisma.$disconnect;
+      return responseJson(res, 400, "Invalid file type. Only PNG, WebP, and JPEG images are allowed.")
     }
     await prisma.post.create({
       data: {
@@ -43,10 +37,7 @@ export async function createPost(req: Request, res: Response) {
     return responseJson(res, 201, "Successfully created a post")
   } catch (error) {
     console.log(error);
-    res.json({
-      status: 400,
-      message: "bad Request",
-    });
     await prisma.$disconnect;
+    return responseJson(res, 400, "bad request")
   }
 }
