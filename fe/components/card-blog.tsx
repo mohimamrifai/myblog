@@ -33,7 +33,7 @@ export default function CardBlog({ data } : {data: Post}) {
   return (
     <motion.div
       variants={animate}
-      className="border-gray-200 dark:border-gray-600 border-[1px] rounded-md shadow p-2"
+      className="border-gray-200 dark:bg-gray-900 dark:border-gray-600 border-[1px] rounded-md shadow p-2"
     >
       <div className="h-40 w-full bg-slate-100 rounded grid place-items-center mb-3 overflow-hidden">
         <Image src={thumbnail} width={1000} height={1000} alt={data.title} className="w-full h-auto object-cover" />
@@ -69,7 +69,7 @@ export default function CardBlog({ data } : {data: Post}) {
         {data.title}
       </Link>
       <p className="line-clamp-4 text-sm px-2 text-slate-500 dark:text-slate-300">
-        {data.thumbnail}
+        {data.excerpt}
       </p>
       <div className="flex justify-between items-center mt-2 ps-2 mb-1">
         <Link href="/">
