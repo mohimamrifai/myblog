@@ -11,3 +11,17 @@
     <img src="https://github.com/devicons/devicon/blob/master/icons/prisma/prisma-original-wordmark.svg" title="prisma" alt="prisma" width="50" height="50"/>&nbsp;
 </div>
 </div>
+
+### Features
+---
+#### Frontend
+  - Homepage
+  - Detail page
+#### Backend
+  - Get all posts
+  - Get post by id
+  - Create Post
+  - Delete Post
+  - Update Post
+  - Get all categories
+  - Get category by id
