@@ -7,9 +7,7 @@ const app = express();
 const port = 8000;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: "*"
-}))
+app.use(cors())
 app.use(express.json());
 app.use('/api/v1/thumbnail', express.static('src/assets/thumbnail'))
 app.use('/api/v1/posts', postsRoutes);
