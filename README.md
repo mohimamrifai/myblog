@@ -12,11 +12,14 @@
 </div>
 </div>
 
-### Features
 ---
+### Features
 #### Frontend
-  - Homepage
+  - Home page
   - Detail page
+  - Login page
+  - Register page
+  - Dashboard page
 #### Backend
   - Get all posts
   - Get post by id
