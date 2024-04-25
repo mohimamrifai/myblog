@@ -6,17 +6,33 @@ const prisma = new PrismaClient();
 
 export async function postById(req: Request, res: Response) {
   try {
-    const user = await prisma.post.findFirst({
+    const post = await prisma.post.findFirst({
       where: {
         id: req.params.id,
       },
+      include: {
+        author: {
+          select: {
+            id: true,
+            username: true,
+            email: true 
+          }
+        },
+        category: {
+          select: {
+            id: true,
+            name: true,
+            slug: true
+          }
+        }
+      }
     });
-    if (!user) {
+    if (!post) {
       await prisma.$disconnect;
-      return responseJson(res, 404, "User not found");
+      return responseJson(res, 404, "Post Not Found");
     }
     await prisma.$disconnect;
-    return responseJson(res, 200, "success", user)
+    return responseJson(res, 200, "success", post)
   } catch (error) {
     console.log(error);
     await prisma.$disconnect;
