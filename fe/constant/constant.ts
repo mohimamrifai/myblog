@@ -5,12 +5,12 @@ export const navLinks = [
     href: "/docs",
   },
   {
-    title: "Update",
-    href: "/update",
+    title: "Login",
+    href: "/login",
   },
   {
-    title: "Course",
-    href: "/cours",
+    title: "Register",
+    href: "/register",
   },
 ];
 export const categories = [
