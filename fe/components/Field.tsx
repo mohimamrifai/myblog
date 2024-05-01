@@ -7,7 +7,7 @@ type FieldProps = {
   label: string;
   placeholder: string;
   htmlFor: string;
-  type: string;
+  type: "text" | "file" | "password" | "email";
   className: string;
 };
 
