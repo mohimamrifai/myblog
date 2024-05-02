@@ -26,7 +26,13 @@ export async function login(req: Request, res: Response) {
       return responseJson(res, 400, "Email atau Password salah");
     }
 
-    const token = jwt.sign(user, secretKey, { expiresIn: "1h" });
+    const payload = {
+      username: user.username,
+      email: user.email
+    }
+
+    // create token
+    const token = jwt.sign(payload, secretKey, { expiresIn: "1h" });
 
     await prisma.$disconnect;
     return responseJson(res, 200, "success", token);

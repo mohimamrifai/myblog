@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { createSlug } from "../../utils/createSlug";
 import { calculateReadTime } from "../../utils/calculateReadTime";
-import validateThumbnail from "../../utils/validateThumbnail";
+import validateImage from "../../utils/validateImage";
 import responseJson from "../../utils/responseJson";
 
 const prisma = new PrismaClient();
@@ -15,9 +15,8 @@ export async function createPost(req: Request, res: Response) {
     const thumbnail = Date.now() + "_" + file?.originalname;
     const slug = await createSlug(title);
     const read_time = calculateReadTime(body)
-    const isValidThumbnail = await validateThumbnail(file)
+    const isValidThumbnail = await validateImage(file)
     if (!isValidThumbnail) {
-      await prisma.$disconnect;
       return responseJson(res, 400, "Invalid file type. Only PNG, WebP, and JPEG images are allowed.")
     }
     await prisma.post.create({

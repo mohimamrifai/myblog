@@ -1,4 +1,4 @@
-export default function validateThumbnail(file: any): boolean {
+export default function validateImage(file: any): boolean {
     const allowedMimeTypes: string[] = ["image/png", "image/webp", "image/jpeg"];
     // Memisahkan tipe mime menjadi tipe dan sub-tipe
     const [type, subType] = file.mimetype.split('/');
