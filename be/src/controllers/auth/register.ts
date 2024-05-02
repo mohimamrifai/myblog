@@ -37,7 +37,7 @@ export async function register(req: Request, res: Response) {
       );
     }
 
-    const avatarPath = Date.now() + "_" + avatar?.originalname;
+    const avatarPath = email + "_" + avatar?.originalname;
     // store ke database
     await prisma.user.create({
       data: {

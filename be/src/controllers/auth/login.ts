@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import responseJson from "../../utils/responseJson";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -21,7 +22,7 @@ export async function login(req: Request, res: Response) {
     }
 
     // cek password apakah sama dengan yang di database
-    const isValidPassword = password === user.password;
+    const isValidPassword = await bcrypt.compare(password, user.password)
     if (!isValidPassword) {
       return responseJson(res, 400, "Email atau Password salah");
     }

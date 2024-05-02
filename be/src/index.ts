@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 app.use(express.json());
 app.use('/api/v1/thumbnail', express.static('src/assets/thumbnail'))
+app.use('/api/v1/avatar', express.static('src/assets/avatar'))
 app.use('/api/v1/posts', postsRoutes);
 app.use('/api/v1/categories', categoriesRoutes);
 app.use('/api/v1/auth', authRoutes)

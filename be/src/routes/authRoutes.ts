@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     callback(null, "src/assets/avatar");
   },
   filename(req, file, callback) {
-    const fileName = Date.now() + "_" + file.originalname;
+    const fileName = req.body.email + "_" + file.originalname;
     callback(null, fileName);
   },
 });
