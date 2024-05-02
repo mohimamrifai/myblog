@@ -53,7 +53,7 @@ export default function Page() {
           />
           <Button className="w-full">Register</Button>
           <p className="text-center mt-2 text-sm">do have an account yet ? 
-            <Link href="/register" className="underline text-blue-400"> Login</Link>
+            <Link href="/login" className="underline text-blue-400"> Login</Link>
           </p>
         </CardContent>
       </Card>
