@@ -5,7 +5,7 @@ import { createSlug } from "../../utils/createSlug";
 
 const prisma = new PrismaClient();
 
-export async function CreateCategory(req: Request, res: Response) {
+export async function createCategory(req: Request, res: Response) {
   try {
     const { name } = req.body;
     const slug = await createSlug(name)
