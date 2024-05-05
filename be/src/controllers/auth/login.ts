@@ -33,10 +33,10 @@ export async function login(req: Request, res: Response) {
     }
 
     // create token
-    const token = jwt.sign(payload, secretKey, { expiresIn: "1h" });
+    const token = await jwt.sign(payload, secretKey, { expiresIn: "1h" });
 
     await prisma.$disconnect;
-    return responseJson(res, 200, "success", token);
+    return responseJson(res, 200, "success", {token});
   } catch (error) {
     console.log(error);
     await prisma.$disconnect;
