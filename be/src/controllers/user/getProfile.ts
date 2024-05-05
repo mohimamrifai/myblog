@@ -10,6 +10,7 @@ export async function getProfile(req: Request, res: Response) {
 
     const user = await prisma.user.findFirst({
       where: { id: id },
+      select: { id: true , username: true, email: true, avatar: true}
     });
 
     await prisma.$disconnect;
